@@ -38,7 +38,7 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -86,4 +86,5 @@ class CharacterController extends Controller
     {
         //
     }
+    
 }

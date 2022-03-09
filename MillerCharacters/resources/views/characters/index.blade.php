@@ -10,7 +10,7 @@
       <th>Name</th>
       <th>Birthday</th>
       <th>Occupation</th>
-       <th>Image</th>
+       
         <th>Status</th>
             <th></th>
 
@@ -22,7 +22,6 @@
       <td>{{$character->name}}</td>
       <td>{{$character->birthday}}</td>
       <td>{{$character->occupation}}</td>
-        <td>{{$character->img}}</td>
           <td>{{$character->status}}</td>
            <td><a href="{{ route('characters.show', $character->id) }}">Show Detail</a></td>
     </tr>
