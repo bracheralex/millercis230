@@ -16,7 +16,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::all();
+        $characters = \App\Models\Character::paginate(25);
         return view('characters.index', ['characters' => $characters]);
     }
 
@@ -27,7 +27,8 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        //
+        $character = new \App\Models\Character;
+        return view('characters.create', ['character' => $character ]);
     }
 
     /**
@@ -38,7 +39,19 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        
+         $validatedData = $request->validate([
+            'name' => 'required',
+            'birthday' => 'required',
+            'occupation' => 'required',
+            'status' => 'required',
+            'age' =>'integer',
+            'img' => ' '
+         ]);
+ 
+         \App\Models\Character::create($this->validatedData($request));
+
+                //valid and created
+         return redirect()->route('characters.index')->with('success', 'Character was created successfully');
     }
 
     /**
@@ -49,7 +62,7 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        $character = Character::find($id);
+        $character = \App\Models\Character::findOrFail($id);
         return view ('characters.show', ['character' => $character ]);
         }
 
@@ -61,7 +74,8 @@ class CharacterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $character = \App\Models\Character::findOrFail($id);
+        return view ('characters.edit', ['character' => $character]);
     }
 
     /**
@@ -73,7 +87,20 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $request->validate([
+              'name' => 'required',
+            'birthday' => 'required',
+            'occupation' => 'required',
+            'status' => 'required',
+            'age' =>'integer',
+            'img' => ' '
+         ]);
+ 
+         \App\Models\Character::find($id)->update($this->validatedData($request));
+
+                //valid and created
+         return redirect()->route('characters.index')->with('success', 'Character was updated successfully');
+
     }
 
     /**
@@ -84,7 +111,20 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $character = \App\Models\Character::find($id);
+        $character->delete();
+        return redirect()-> route('characters.index')->with('success', 'Character was deleted');
+    }
+
+    private function validatedData($request) {
+             return $request->validate([
+             'name' => 'required',
+            'birthday' => 'required',
+            'occupation' => 'required',
+            'status' => 'required',
+            'age' =>'integer',
+            'img' => ' '
+         ]);
     }
     
 }
