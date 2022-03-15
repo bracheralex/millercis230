@@ -4,7 +4,7 @@
 <h3> Characters </h3>
 <a class="btn btn-primary" href="{{route('characters.create')}}">Create </a>
 
-{{ $characters -> links() }}
+{{ $characters->links() }}
 
 <table class="table table-striped table-hover">
 
@@ -42,5 +42,5 @@
 @endforeach
 </table>
 
-{{ $characters -> links() }}
+{{ $characters->links() }}
 @endsection
