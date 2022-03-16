@@ -32,7 +32,7 @@ class CharacterSeeder extends Seeder
                 'birthday' => $faker->dateTimeBetween('1970-01-01', '2019-12-31')->format('d/m/Y'),
                 'occupation' => $faker->jobTitle(),
                 'status' => $faker->text(),
-                'img'=> $faker->imageUrl,
+                'img' =>$faker->imageUrl()
                 // 'age' => $faker->numberBetween(1,100)
            ]);
        }
