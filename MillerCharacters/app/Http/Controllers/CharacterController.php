@@ -16,7 +16,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = \App\Models\Character::paginate(25);
+        $characters = \App\Models\Character::paginate(10);
         return view('characters.index', ['characters' => $characters]);
     }
 
