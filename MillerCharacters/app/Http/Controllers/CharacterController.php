@@ -39,7 +39,7 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-         $validatedData = $request->validate([
+         $validatedData = $request([
             'name' => 'required',
             'birthday' => 'required',
             'occupation' => 'required',
@@ -87,7 +87,7 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $request->validate([
+            $request([
               'name' => 'required',
             'birthday' => 'required',
             'occupation' => 'required',
